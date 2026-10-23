@@ -51,8 +51,8 @@ describe('getChunkConfig', () => {
   });
 
   it('Should reject a maximum above what one embedding request can carry', () => {
-    expect(() => getChunkConfig({ LOX_CHUNK_MAX_TOKENS: '8001' })).toThrow(
-      /LOX_CHUNK_MAX_TOKENS \(8001\) must not exceed 8000/,
+    expect(() => getChunkConfig({ LOX_CHUNK_MAX_TOKENS: '6001' })).toThrow(
+      /LOX_CHUNK_MAX_TOKENS \(6001\) must not exceed 6000/,
     );
   });
 

@@ -6,8 +6,8 @@ export interface ChunkConfig {
   embedTitle: boolean;
 }
 
-const OVERLAP_SHARE_OF_MAX_TOKENS = 5;
-const MAX_ALLOWED_CHUNK_TOKENS = 8000;
+const MAX_TO_OVERLAP_RATIO = 5;
+const MAX_ALLOWED_CHUNK_TOKENS = 6000;
 const TRUE_VALUES = new Set(['true', '1', 'yes']);
 const FALSE_VALUES = new Set(['false', '0', 'no']);
 
@@ -27,7 +27,7 @@ function parseBoolean(name: string, raw: string): boolean {
 }
 
 function defaultOverlapFor(maxTokens: number): number {
-  return Math.min(CHUNK_OVERLAP_TOKENS, Math.floor(maxTokens / OVERLAP_SHARE_OF_MAX_TOKENS));
+  return Math.min(CHUNK_OVERLAP_TOKENS, Math.floor(maxTokens / MAX_TO_OVERLAP_RATIO));
 }
 
 export function getChunkConfig(env: NodeJS.ProcessEnv = process.env): ChunkConfig {
